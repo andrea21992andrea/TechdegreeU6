@@ -1,6 +1,7 @@
-const qwerty = document.getElementById('qwert');
+const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
-const start = document.getElementsByClassName('btn__reset');
+const start = document.getElementsByClassName('btn__reset')[0];
+// const start = document.getElementsById('btn__reset'); cambiar class to ID 
 const startScreen = document.getElementById('overlay');
 const keyrow = document.querySelectorAll('keyrow');
 const button = document.getElementsByTagName('button');
@@ -18,11 +19,11 @@ start.addEventListener('click', () => {
 
   
 const phrases = [
-    'Dog',
-    'Cat',
-    'Squirrel',
-    'The Armadillo',
-    'Coyote'
+    'dog',
+    'cat',
+    'squirrel',
+    'the armadillo',
+    'coyote'
 ];
 
 
@@ -76,7 +77,7 @@ function checkLetter(btn) {
 qwerty.addEventListener('click', (e) => {
   let btn = e.target;
   if (e.target.tagName === 'BUTTON' && e.target.className != "chosen") {
-    btn.classList.add("chosen")
+    btn.classList.add("chosen");
     btn.disabled = true;
 }
 const letterFound = checkLetter(btn);
@@ -117,7 +118,7 @@ function resetGame() {
 
 function checkWin() {
     if (letters.length === shows.length) {
-        winner(() => {
+        setTimeout(() => {
             startScreen.className = "win",
             startScreen.children[0].textContent = "You Win!",
             start.textContent = "Reset",
@@ -125,7 +126,7 @@ function checkWin() {
           }, 500)
           
     } else if (missed >= 5) {
-        winner(() => {
+        setTimeout(() => {
             startScreen.className = "lose",
             startScreen.children[0].textContent = "Try Again",
             start.textContent = "Reset",
